@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
 //import './Content.css';
-import SendParcel from './SendParcel';
-import ReceiveParcel from './ReceiveParcel';
 class Content extends Component {
-  constructor(props) {
-    super(props)
+  constructor(super) {
+    super(props);
     this.state = {
-      sendFrom: "",
-      receiveFrom: ""
-      <input name='sendFrom' onChange={ event => this.handleChange} />
-      <input name='receiveFrom' onChange={ event => this.handleChange} />
-      handleChange (event) {
-  this.setState( [event.target.name]: event.target.value )
+      sendFrom:"",
+      receiveFrom:""
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
 }
-   };
+handleInputChange(event) {
+this.setState({event.target.name : event.target.value})
+}
 
-  }
   render() {
     return (
      <div id="Content">
-        <SendParcel/>
-        <ReceiveParcel/>
+     <form id="SendParcel" method="POST">
+         <label>From<input required type="text" name ="sendFrom" onChange={this.handleInputChange}/></label>
+         <label>To<input required type="text"/></label>
+         <div>    </div>
+         <button formaction="getCode()">Get Code</button>
+         <button formaction="sendParcel()">Submit</button>
+       </form>
+        <form id="ReceiveParcel" method="POST">
+            <label>From<input required type="text" name ="receiveFrom" onChange={this.handleInputChange}/></label>
+            <label>To<input required type="text"/></label>
+            <div>    </div>
+            <button formaction="getCode()">Get Code</button>
+            <button formaction="receiveParcel()">Submit</button>
+          </form>
       </div>
     );
   }
